@@ -1,0 +1,38 @@
+[
+    {
+        "precio": 650000,
+        "id": 1,
+        "title": "Fender Jazz Bass",
+        "thumbnailUrl": "https://ar.xprostore.com/image/cache/data/imagenesweb/jazz-bass-s-1200x1200.jpg"
+    },
+    {
+        "precio": 550000,
+        "id": 2,
+        "title": "Fender Precision Bass",
+        "thumbnailUrl": "https://www.ecomusicweb.com/wp-content/uploads/2018/09/preview_1.jpg"
+    },
+    {
+        "precio": 580000,
+        "id": 3,
+        "title": "Fender Precision Bass 5",
+        "thumbnailUrl": "https://images.musicstore.de/images/1280/fender-american-professional-ii-precision-bass-v-rw-3-colour-sunburst-_1_BAS0011250-000.jpg.webp"
+    },
+    {
+        "precio": 220000,
+        "id": 4,
+        "title": "Squier Jazz Bass 70's Vintage Modified",
+        "thumbnailUrl": "https://media.justmusic.de/Artikelbilder/Shopsystem/1000px_V2/10047554_1.jpg"
+    },
+    {
+        "precio": 280000,
+        "id": 5,
+        "title": "Squier Jazz Bass Classic vibe 60",
+        "thumbnailUrl": "https://compasuno.com.ar/wp-content/uploads/2022/04/D_670294-MLA49548016072_042022-F.jpg"
+    },
+    {
+        "precio": 180000,
+        "id": 6,
+        "title": "Epiphone Toby Standard IV",
+        "thumbnailUrl": "https://media.justmusic.de/Artikelbilder/Shopsystem/1000px_V2/J0106728_1.jpg"
+    }
+]
