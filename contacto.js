@@ -5,43 +5,33 @@ let formulario = document.querySelector("#formulario");
 let mostrar = document.querySelector(".mostrar");
 
 /*********************eventos********************/
-correoForm.addEventListener("input", function(){
-    //console.log(correoForm.value);
-    /*if (correoForm.value === ""){
-        alert("Ingrese un dato valido.");
-    }*/
+correoForm.addEventListener("input", function () {
+
 });
 
-textoForm.addEventListener("input", function(){
-    //console.log(textoForm.value);
-    /*if(textoForm.value === ""){
-        alert("Ingrese caracteres validos.");
-    }*/
+textoForm.addEventListener("input", function () {
+
 })
 
 
 /*******************************incluyendo elementos al DOM*******************************/
-const mostrarInfo = formulario.addEventListener("submit", function(c){
+const mostrarInfo = formulario.addEventListener("submit", function (c) {
     c.preventDefault();
-    if(textoForm.value === "" || correoForm.value === ""){
-        alert("Ingrese caracteres validos.");
-    }else {
-    mostrar.innerHTML = `<h4>Gracias por tu compra. Enviaremos los detalles a "${correoForm.value}".
-    Con respecto a tu consulta "${textoForm.value}" tambien será respondida al mismo correo. </h4>`
-}
+    if (textoForm.value === "" || correoForm.value === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Alerta',
+            text: 'Ha ingresado caracteres invalidos. Por favor intentelo nuevamente.',
+            confirmButtonText: 'Entendido',
+            footer: '<a href="">¿A que se debe este problema?</a>'
+        })
+    } else {
+
+        Swal.fire({
+            icon: 'info',
+            title: '¡Consulta enviada!',
+            text: 'Gracias por hacernos llegar tus dudas, te responderemos a la brevedad, a la dirección indicada.',
+            confirmButtonText: 'Cerrar'
+        });
+    }
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-//mostrar.innerHTML = `<h4>Gracias por tu compra. Enviaremos los detalles a "${correoForm.value}".
-//    Con respecto a tu consulta "${textoForm.value}" tambien será respondida al mismo correo. </h4>`

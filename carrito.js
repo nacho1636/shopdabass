@@ -15,7 +15,7 @@ let carrito = {}
 /********************************************DOM******************************************/
 document.addEventListener(`DOMContentLoaded`, () => {
     fetchData()
-    if(localStorage.getItem('carrito')){
+    if (localStorage.getItem('carrito')) {
         carrito = JSON.parse(localStorage.getItem('carrito'))
         pintarCarrito()
     }
@@ -34,8 +34,8 @@ const fetchData = async () => {
         const res = await fetch(`stock.json`)
         const data = await res.json()
         pintarCards(data)
-        
-    } catch (error){
+
+    } catch (error) {
         console.log(error);
     }
 }
@@ -57,7 +57,7 @@ const pintarCards = data => {
 }
 /********************************************funcionalidad agregar al carrito******************************************/
 const addCarrito = e => {
-    if (e.target.classList.contains(`btn-dark`)){
+    if (e.target.classList.contains(`btn-dark`)) {
         setCarrito(e.target.parentElement)
     }
     e.stopPropagation()
@@ -72,11 +72,11 @@ const setCarrito = objeto => {
         cantidad: 1
     }
 
-    if(carrito.hasOwnProperty(producto.id)){
+    if (carrito.hasOwnProperty(producto.id)) {
         producto.cantidad = carrito[producto.id].cantidad + 1
     }
 
-    carrito[producto.id] = {...producto}
+    carrito[producto.id] = { ...producto }
     pintarCarrito()
 }
 
@@ -99,53 +99,61 @@ const pintarCarrito = () => {
 
 
 
-/*******************************guardar copia local del carrito actual*********************************/
+    /*******************************guardar copia local del carrito actual*********************************/
     localStorage.setItem('carrito', JSON.stringify(carrito))
 }
 
 /*****************************************mostrar resultados del carrito en el footer******************************/
 const pintarFooter = () => {
-        footer.innerHTML = ''
-        if(Object.keys(carrito).length === 0){
-            footer.innerHTML = `<th scope="row" colspan="5">Su carrito esta vacio!</th>`
+    footer.innerHTML = ''
+    if (Object.keys(carrito).length === 0) {
+        footer.innerHTML = `<th scope="row" colspan="5">Su carrito esta vacio!</th>`
 
-            return
-        }
+        return
+    }
 
-        const nCantidad = Object.values(carrito).reduce((acc, {cantidad}) => acc + cantidad, 0)
-        const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio, 0)
+    const nCantidad = Object.values(carrito).reduce((acc, { cantidad }) => acc + cantidad, 0)
+    const nPrecio = Object.values(carrito).reduce((acc, { cantidad, precio }) => acc + cantidad * precio, 0)
 
-        templateFooter.querySelectorAll('td')[0].textContent = nCantidad
-        templateFooter.querySelector('span').textContent = nPrecio
+    templateFooter.querySelectorAll('td')[0].textContent = nCantidad
+    templateFooter.querySelector('span').textContent = nPrecio
 
-        const clone = templateFooter.cloneNode(true)
-        fragment.appendChild(clone)
-        footer.appendChild(fragment)
+    const clone = templateFooter.cloneNode(true)
+    fragment.appendChild(clone)
+    footer.appendChild(fragment)
 
-        const btnVaciar = document.getElementById('vaciar-carrito')
-        btnVaciar.addEventListener('click', () => {
-            carrito = {}
-            pintarCarrito()
-        })
+    const btnVaciar = document.getElementById('vaciar-carrito')
+    btnVaciar.addEventListener('click', () => {
+        carrito = {}
+        pintarCarrito()
+        Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Se ha vaciado el carrito.',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    })
 }
 
 /*************************************botones de accion (agregar-quitar) del carrito**********************************/
 const btnAccion = e => {
-    console.log(e.target)
+
     //aumentar
-    if(e.target.classList.contains('btn-info')) {
-        console.log(carrito[e.target.dataset.id]);
+    if (e.target.classList.contains('btn-info')) {
         const producto = carrito[e.target.dataset.id]
         producto.cantidad++
-        carrito[e.target.dataset.id] = {...producto}
+        carrito[e.target.dataset.id] = { ...producto }
         pintarCarrito()
-        
+
     }
 
-    if(e.target.classList.contains('btn-danger')){
+
+    //disminuir
+    if (e.target.classList.contains('btn-danger')) {
         const producto = carrito[e.target.dataset.id]
         producto.cantidad--
-        if(producto.cantidad === 0){
+        if (producto.cantidad === 0) {
             delete carrito[e.target.dataset.id]
         }
         pintarCarrito()
@@ -153,3 +161,4 @@ const btnAccion = e => {
 
     e.stopPropagation()
 }
+
